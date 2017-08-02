@@ -1,0 +1,65 @@
+
+var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l',
+    'm','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+var wins = 0;
+var losses = 0;
+var guessesLeft = 10, guessedLetters, letterToGuess;
+
+
+
+  resetGame();
+  display();
+
+var computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+    console.log(computerChoice)
+
+document.onkeyup = function(event) {
+  var guess = event.key;
+  if (guess === letterToGuess) {
+    win();
+  } else if (guessesLeft - 1 === 0) {
+    lost();
+  } else {
+    fail(guess);
+  }
+
+    display();
+}
+
+    if(userGuess === computerChoice){
+        wins++;
+    }else{
+        guesses--;
+    }
+
+    if(guesses === 0){
+        losses++
+    }
+function display() {
+    var wins = document.getElementById('wins').innerHTML = wins;
+    var losses = document.getElementById('losses').innerHTML = losses;
+    var guessesLeft = document.getElementById('guesses left').innerHTML = guesses left;
+    var letterGuessed = document.getElementById("guessed"), letterGuessed.innerHTML = guessedLetters.join(',');
+    }
+}
+
+function win() {
+  wins++;
+  resetGame();
+}
+
+function lost() {
+  loses++;
+  resetGame();
+}
+
+function fail(letter) {
+  guessesLeft--;
+  guessedLetters.push(letter);
+}
+
+function resetGame() {
+  guessesLeft = 10;
+  guessedLetters = [];
